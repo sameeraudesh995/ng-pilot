@@ -8,8 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-//import { ApplicationConfig } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -18,15 +17,14 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     // HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    //AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AppComponent
   ],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
-    provideAnimations()
+    provideFirebaseApp(() => initializeApp({"projectId":"ng-pilot-auth-f6271","appId":"1:514590325027:web:cacdc1fb1eb0d6c6463496","storageBucket":"ng-pilot-auth-f6271.firebasestorage.app","apiKey":"AIzaSyDHZzRAR7qdCms6ye21txmb6QcYs63Fskw","authDomain":"ng-pilot-auth-f6271.firebaseapp.com","messagingSenderId":"514590325027","measurementId":"G-LQV596X6HD"})),
+    provideAuth(() => getAuth()), provideFirestore(() => getFirestore())
+
   ],
   bootstrap: []  // Added AppComponent to bootstrap
 })
